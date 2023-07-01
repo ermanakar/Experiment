@@ -1,0 +1,130 @@
+.PodcastInterview {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    height: 100%;
+    min-height: 100vh;
+    background-color: #CFD6E7;
+    padding: 50px;
+}
+
+.PodcastInterview h1 {
+    font-family: 'Poppins', sans-serif;
+    font-size: 42px;
+    margin-bottom: 16px;
+    color: #0C2577;
+}
+
+.PodcastInterview label {
+    font-family: 'Poppins', sans-serif;
+    font-size: 16px;
+    margin-bottom: 8px;
+    color: #0C2577;
+}
+
+.PodcastInterview input[type="text"] {
+    font-family: 'Poppins', sans-serif;
+    font-size: 16px;
+    color: #0C2577;
+    padding: 10px;
+    border: 2px solid #C2C6D2;
+    border-radius: 4px;
+    margin-bottom: 16px;
+    width: 100%;
+    max-width: 500px;
+}
+
+.PodcastInterview .SubmitButton, .PodcastInterview .StartOverButton {
+    display: inline-block;
+    background-color: #0C2577;
+    color: #F5F5F5;
+    padding: 10px 20px;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+    font-family: 'Poppins', sans-serif;
+    font-size: 16px;
+    transition: background-color 0.3s ease;
+    margin-bottom: 20px;
+}
+
+.PodcastInterview .SubmitButton:hover, .PodcastInterview .StartOverButton:hover {
+    background-color: #F56363;
+}
+
+.PodcastInterview .GoBack {
+    font-family: 'Poppins', sans-serif;
+    font-size: 16px;
+    text-decoration: none;
+    color: #0C2577;
+    position: absolute;
+    top: 20px;
+    left: 20px;
+    display: inline-block;
+    padding: 10px 20px;
+    background-color: #F5F5F5;
+    border: 1px solid #0C2577;
+    border-radius: 4px;
+    transition: background-color 0.3s ease;
+    z-index: 1;
+  }
+  
+  .PodcastInterview .GoBack:hover {
+    background-color: #0C2577;
+    color: #F5F5F5;
+  }  
+
+.generated-questions {
+    width: 100%;
+    max-width: 500px;
+}
+
+.generated-question {
+    background-color: #C2C6D2;
+    padding: 10px;
+    margin-bottom: 10px;
+    position: relative;
+    border-radius: 4px;
+}
+
+.question-info {
+    position: absolute;
+    right: 10px;
+    top: 50%;
+    transform: translateY(-50%);
+    cursor: pointer;
+}
+
+.tooltip-text {
+    visibility: hidden;
+    width: 120px;
+    background-color: #0C2577;
+    color: #F5F5F5;
+    text-align: center;
+    border-radius: 4px;
+    padding: 5px 0;
+    position: absolute;
+    z-index: 1;
+    bottom: 100%;
+    left: 50%;
+    margin-left: -60px;
+}
+
+.question-info:hover .tooltip-text {
+    visibility: visible;
+}
+
+.Loader {
+    border: 16px solid #C2C6D2;
+    border-top: 16px solid #0C2577;
+    border-radius: 50%;
+    width: 120px;
+    height: 120px;
+    animation: spin 2s linear infinite;
+}
+
+@keyframes spin {
+    0% { transform: rotate(0deg); }
+    100% { transform: rotate(360deg); }
+}

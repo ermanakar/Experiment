@@ -1,0 +1,252 @@
+* {
+    box-sizing: border-box;
+}
+  
+.PrdCreator {
+    font-family: 'Poppins', sans-serif;
+    padding: 0;
+    margin: 0;
+    background-color: #F2E7DC;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: flex-start;
+    width: 100%;
+    min-height: 100vh;
+    padding: 2rem;
+    text-align: center;
+}
+
+.GoBack {
+    font-family: 'Poppins', sans-serif;
+    font-size: 16px;
+    text-decoration: none;
+    color: #0D0D0D;
+    position: absolute;
+    top: 20px;
+    left: 20px;
+    display: inline-block;
+    padding: 10px 20px;
+    background-color: #F2E7DC;
+    border: 1px solid #0D0D0D;
+    border-radius: 4px;
+    transition: background-color 0.3s ease;
+    z-index: 1;
+}
+
+.GoBack:hover {
+    background-color: #0D0D0D;
+    color: #F2E7DC;
+}
+
+.header1 {
+    text-align: center;
+    padding: 50px 0;
+    background: linear-gradient(to bottom, #A9D9D0, #F2E7DC);
+    color: #0D0D0D;
+    width: 100%;
+    font-family: 'Poppins', sans-serif;
+    text-shadow: 2px 2px #f2e7dc;
+}
+  
+.mainContent {
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    overflow-x: hidden;
+    background: #f2e7dc;
+
+}
+
+.Form {
+    padding: 1.7rem;
+}
+
+.FormField {
+    width: 100%;
+    margin-bottom: 1rem;
+}
+
+.InputSelect {
+    font-family: 'Courier New', sans-serif;
+    padding: 10px;
+    margin-bottom: 20px;
+    border: 1px solid #C2C6D2;
+    border-radius: 4px;
+    box-sizing: border-box;
+    color: #0C2577;
+    font-style: italic;
+    box-shadow: 3px 3px 8px rgb(169 217 208);
+}
+
+.BusinessTypeButtonGroup {
+    display: flex;
+    justify-content: space-around;
+}
+
+.BusinessTypeButton {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    border: 1px solid #0D0D0D;
+    background-color: #F2E7DC;
+    padding: 0.5rem;
+    border-radius: 10px;
+    cursor: pointer;
+    margin: 0.5rem;
+    text-align: center;
+    color: #0D0D0D;
+    font-family: 'Poppins', sans-serif;
+    transition: background-color 0.6s ease;
+    box-shadow: 3px 3px 8px rgb(169 217 208);
+    width: 200px;
+}
+
+.BusinessTypeButton.active {
+    background-color: #038C7F;
+    color: #F2E7DC;
+}
+
+.BusinessTypeButton:hover {
+    background-color: #027373;
+    color: #F2E7DC;
+}
+
+.BusinessTypeIcon {
+    font-size: 48px;
+    margin-bottom: 10px;
+}
+
+.BusinessTypeText {
+    font-size: 24px;
+    font-family: 'Poppins';
+    font-weight: bold;
+}
+
+@media (max-width: 1024px) {
+    .BusinessTypeButton {
+        width: 100%;
+        height: auto;
+    }
+
+    .BusinessTypeIcon {
+        font-size: 36px;
+        text-shadow: 0px 0px 15px #A9D9D0;
+
+    }
+
+    .BusinessTypeText {
+        font-size: 16px;
+    }
+}
+
+@media (max-width: 390px) {
+    .BusinessTypeButton {
+        width: 100%;
+        height: auto;
+    }
+
+    .BusinessTypeIcon {
+        font-size: 24px;
+    }
+
+    .BusinessTypeText {
+        font-size: 14px;
+    }
+}
+
+.BusinessTypeIcon,
+.BusinessTypeText {
+    display: block;
+}
+
+.Button {
+    cursor: pointer;
+    text-align: center;
+    font-family: Poppins;
+}
+
+.ButtonPrimary {
+    background-color: #038C7F;
+    color: #F2E7DC;
+}
+
+.ResponseContainer {
+    background-color: #A9D9D0;
+    padding: 2rem;
+    border: 1px solid #0D0D0D;
+    border-radius: 10px;
+    width: 100%;
+    max-width: 600px;
+    overflow: auto;
+    box-shadow: 3px 3px 8px rgb(169 217 208);
+}
+
+.StartOverButton {
+    background-color: #027373;
+    color: #F2E7DC;
+    margin-top: 1rem;
+}
+
+@media (min-width: 992px) {
+    .mainContent {
+        flex-direction: row;
+        justify-content: space-around;
+        align-items: flex-start;
+    }
+
+    .Form, .ResponseContainer {
+        width: 45%;
+    }
+}
+
+.ResetButton {
+    background-color: #F2E7DC;
+    border: 1px solid #0D0D0D;
+    color: #0D0D0D;
+    padding: 5px 10px;
+    margin: 10px 0;
+    cursor: pointer;
+}
+
+.ResetButton:hover {
+    background-color: #0D0D0D;
+    color: #F2E7DC;
+}
+
+.ErrorMessage {
+    color: #0D0D0D;
+    font-size: 16px;
+    padding: 10px;
+    margin-bottom: 15px;
+    border: 1px solid #0D0D0D;
+    background-color: #F2E7DC;
+}
+
+.Response {
+    word-wrap: break-word;
+    white-space: pre-wrap;
+    white-space: -moz-pre-wrap;
+    white-space: -pre-wrap;
+    white-space: -o-pre-wrap;
+    font-size: 16px;
+    line-height: 1.5;
+    text-align: left;
+    color: #0D0D0D;
+    padding: 1rem;
+}
+
+.CopyButton {
+    background-color: #027373;
+    color: #F2E7DC;
+    margin-top: 1rem;
+    cursor: pointer;
+}
+
+.CopyButton:hover {
+    background-color: #0D0D0D;
+    color: #F2E7DC;
+}
