@@ -6,7 +6,7 @@ function Home() {
   return (
     <div className="Home">
       <header>
-        <h1>An exploration into AI's potential.</h1>
+        <h1>An exploration into AI's potential!</h1>
         <p> Just testing some ideas and use cases. Join the experiment!</p>
       </header>
 
