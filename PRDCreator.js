@@ -66,7 +66,7 @@ function PRDCreator() {
     <div className="PRDCreator">
       <Link to="/" className="GoBack">Go Back</Link>
       <div className="header1">
-        <h1>ChatGPT</h1>
+        <h1>Product Requirements Document</h1>
         <p>An exploration into AI's potential. Just testing some ideas and use cases. Join the experiment!</p>
       </div>
       <div className="mainContent">
