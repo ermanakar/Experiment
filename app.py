@@ -3,11 +3,14 @@ from flask import Flask, request, jsonify, abort
 from flask_cors import CORS
 import openai
 import os
+from book import book  # Import the book blueprint from book.py. Make sure it is in the same directory.
 
 # Set up logging
 logging.basicConfig(filename='app.log', level=logging.DEBUG)
 
 app = Flask(__name__)
+app.register_blueprint(book)  # Register the blueprint with your app.
+
 CORS(app)  # This enables CORS for all routes
 
 # Set OpenAI API key

@@ -20,6 +20,12 @@ function Home() {
             <p>Explore AI-powered interview scenarios</p>
           </Link>
 
+          <Link to="/book-summary" className="feature">
+            <i className="fas fa-book"></i>
+            <h3>Book Summary</h3>
+            <p>Get a detailed summary of your favorite books</p>
+          </Link>
+          
           <Link to="/live-podcast" className="feature">
             <i className="fas fa-microphone"></i>
             <h3>What would Lex ask?</h3>
