@@ -1,0 +1,32 @@
+.BookSummary {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  min-height: 100vh;
+  padding: 0;
+  font-family: 'Poppins', sans-serif;
+  color: #0D0D0D;
+  width: 100%;
+  background: #f2e7dc;
+}
+
+.BookSummary h1 {
+  text-align: center;
+  padding: 50px 0;
+  color: #0D0D0D;
+  font-size: 32px;
+}
+
+.BookSummary input, .BookSummary button {
+  padding: 10px;
+  margin: 10px;
+  font-size: 18px;
+}
+
+.BookSummary p {
+  width: 70%;
+  margin: 20px auto;
+  font-size: 16px;
+  line-height: 1.5;
+  text-align: justify;
+}
