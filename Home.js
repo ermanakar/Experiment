@@ -41,10 +41,10 @@ function Home() {
       </section>
 
       <footer>
-        <p>ChatGPT Experiment - 2023</p>
+        <p>OpenAI api Experiment - 2023</p>
       </footer>
     </div>
   );
 }
 
-export default Home;
+export default Home

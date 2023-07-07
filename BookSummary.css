@@ -12,21 +12,83 @@
 
 .BookSummary h1 {
   text-align: center;
-  padding: 50px 0;
+  padding: 20px;
   color: #0D0D0D;
-  font-size: 32px;
 }
 
-.BookSummary input, .BookSummary button {
+.BookSummary input {
   padding: 10px;
+  width: 300px;
+  border: 1px solid #A9D9D0;
+  border-radius: 0.25rem;
   margin: 10px;
-  font-size: 18px;
+}
+
+.BookSummary button {
+  padding: 10px 20px;
+  color: #0D0D0D;
+  border: 1px solid #A9D9D0;
+  border-radius: 0.25rem;
+  background: #A9D9D0;
+  cursor: pointer;
+  transition: all 0.3s ease; /* Transition for hover effect */
+}
+
+.BookSummary button:hover {
+  background: #f2e7dc;
+}
+
+.BookSummary div {
+  border: 1px solid #A9D9D0;
+  border-radius: 0.25rem;
+  margin: 10px;
+  padding: 10px;
+  cursor: pointer;
+  transition: all 0.3s ease; /* Transition for hover effect */
+}
+
+.BookSummary div:hover {
+  background: #A9D9D0;
+}
+
+.BookSummary h2 {
+  color: #0D0D0D;
+}
+
+.BookSummary h3 {
+  color: #0D0D0D;
 }
 
 .BookSummary p {
-  width: 70%;
-  margin: 20px auto;
+  color: #0D0D0D;
+}
+
+@media (max-width: 1024px) {
+  .BookSummary input {
+      width: 80%;
+  }
+}
+
+@media (max-width: 768px) {
+  .BookSummary input {
+      width: 90%;
+  }
+}
+.BookSummary p.summary {
   font-size: 16px;
   line-height: 1.5;
+  margin: 20px;
   text-align: justify;
+  border: 1px solid #A9D9D0;
+  border-radius: 0.25rem;
+  padding: 20px;
+  background: #F2E7DC;
+  color: #0D0D0D;
+  box-shadow: 0px 5px 15px rgba(0,0,0,0.1); /* Shadow for depth */
+}
+
+.BookSummary p.error {
+  color: #FF0000; /* Red text for error messages */
+  font-weight: bold;
+  margin: 20px;
 }

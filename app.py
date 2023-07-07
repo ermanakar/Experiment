@@ -1,20 +1,118 @@
 import logging
-from flask import Flask, request, jsonify, abort
+import os
+import requests
+import pandas as pd
+from flask import Flask, request, jsonify
 from flask_cors import CORS
 import openai
-import os
-from book import book  # Import the book blueprint from book.py. Make sure it is in the same directory.
 
-# Set up logging
 logging.basicConfig(filename='app.log', level=logging.DEBUG)
 
 app = Flask(__name__)
-app.register_blueprint(book)  # Register the blueprint with your app.
+CORS(app)
 
-CORS(app)  # This enables CORS for all routes
-
-# Set OpenAI API key
 openai.api_key = os.getenv('OPENAI_API_KEY')
+
+def get_book_info(author_name):
+    author_name = author_name.replace(" ", "+")
+    response = requests.get(f"https://www.googleapis.com/books/v1/volumes?q={author_name}&langRestrict=en")
+
+    if response.status_code != 200:
+        raise Exception(f"Request failed with status code {response.status_code}. Please try again.")
+    data = response.json()
+    books = data.get('items', [])
+    book_info = []
+    for book in books:
+        volume_info = book.get('volumeInfo', {})
+        title = volume_info.get('title', 'No title available')
+        id = book.get('id', 'No ID available')
+        subtitle = volume_info.get('subtitle', 'No subtitle available')
+        authors = volume_info.get('authors', 'No authors available')
+        publishedDate = volume_info.get('publishedDate', 'No publication date available')
+        description = volume_info.get('description', 'No description available')
+        pageCount = volume_info.get('pageCount', 'No page count available')
+        book_info.append({'ID': id, 'Title': title, 'Subtitle': subtitle, 'Authors': authors, 'PublishedDate': publishedDate, 'Description': description, 'PageCount': pageCount})
+    df = pd.DataFrame(book_info, columns=['ID', 'Title', 'Subtitle', 'Authors', 'PublishedDate', 'Description', 'PageCount'])
+    return df
+
+def get_single_book_info(book_id):
+    response = requests.get(f"https://www.googleapis.com/books/v1/volumes/{book_id}")
+    if response.status_code != 200:
+        raise Exception(f"Request failed with status code {response.status_code}. Please try again.")
+    book = response.json()
+    volume_info = book.get('volumeInfo', {})
+    title = volume_info.get('title', 'No title available')
+    id = book.get('id', 'No ID available')
+    subtitle = volume_info.get('subtitle', 'No subtitle available')
+    authors = volume_info.get('authors', 'No authors available')
+    publishedDate = volume_info.get('publishedDate', 'No publication date available')
+    description = volume_info.get('description', 'No description available')
+    pageCount = volume_info.get('pageCount', 'No page count available')
+    book_info = {'ID': id, 'Title': title, 'Subtitle': subtitle, 'Authors': authors, 'PublishedDate': publishedDate, 'Description': description, 'PageCount': pageCount}
+    return pd.DataFrame(book_info, index=[0])
+
+def select_and_summarize_book(df):
+    # Check if DataFrame is empty
+    if df.empty:
+        raise ValueError("Input DataFrame is empty")
+
+    # Get the book details of the first book
+    chosen_book = df.iloc[0]
+    
+    # Construct the system message with the book details
+    system_message = {
+        "role": "system",
+        "content": f"You are the most knowledgeable librarian, capable of summarizing books. Title of the book is: '{chosen_book['Title']}' written by '{', '.join(chosen_book['Authors']) if isinstance(chosen_book['Authors'], list) else chosen_book['Authors']}' and its description: '{chosen_book['Description']}'"
+    }
+    
+    # Define questions to guide the summarization process
+    questions = [
+        "Give the basic information about the book in the first paragraph", 
+        "Give a short and distilled summary",
+        "Give a bullet list of major events that happen in this book",
+        "Explain why it is significant and finish with a quote from the book",
+    ]
+    
+    # Build messages for OpenAI API request
+    messages = [system_message]
+    for question in questions:
+        user_message = {"role": "user", "content": question}
+        messages.append(user_message)
+    
+    try:
+        # Request chat completion from OpenAI
+        response = openai.ChatCompletion.create(
+            model="gpt-4",
+            messages=messages,
+            max_tokens=2048,
+            temperature=1.0  
+        )
+        return response['choices'][0]['message']['content'].strip()
+    except Exception as e:
+        logging.error(f"Error occurred during OpenAI request: {e}")
+        raise
+
+@app.route('/get-books', methods=['POST'])
+def get_books():
+    author_name = request.json.get('author_name')
+    try:
+        df = get_book_info(author_name)
+        return jsonify(df[:5].to_dict('records')), 200
+    except Exception as e:
+        return jsonify({'error': str(e)}), 500
+
+@app.route('/get-summary', methods=['POST'])
+def get_summary():
+    book_id = request.json.get('book_id')
+    try:
+        df = get_single_book_info(book_id)   # use get_single_book_info() here
+        if not df.empty:
+            summary = select_and_summarize_book(df)
+            return jsonify({'summary': summary}), 200
+        else:
+            return jsonify({'error': 'Book not found'}), 404
+    except Exception as e:
+        return jsonify({'error': str(e)}), 500
 
 @app.route('/generate-prd', methods=['POST'])
 def generate_prd():
