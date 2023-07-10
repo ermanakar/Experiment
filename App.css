@@ -12,8 +12,16 @@
     align-items: center;
     flex-direction: column;
     text-align: center;
+    font-family: 'Poppins', sans-serif;
 }
 
 .blockScreen a {
-    color: #ff813f;
+    font-size: 2rem; /* Adjust the size of the emoji */
+    text-decoration: none;
+    transition: transform 0.3s ease-in-out;
 }
+
+.blockScreen a:hover {
+    transform: scale(1.2); /* On hover, increase the size of the emoji */
+}
+  
