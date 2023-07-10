@@ -15,9 +15,7 @@ function App() {
     return (
         <div className="blockScreen">
             <h2>Hello 👋</h2>
-            <p>I've reached my hard cap on OpenAI API, you can 
-            <a href="https://www.buymeacoffee.com/YourPage" target="_blank" rel="noreferrer">buy me coffee here</a> 
-            to make this stay longer</p>
+            <p>I've reached my hard cap on OpenAI API, you can buy me <a href="https://yourlinkhere" target="_blank" rel="noreferrer"> here</a> to make this stay longer</p>
         </div>
     );
 }
