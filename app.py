@@ -82,7 +82,7 @@ def select_and_summarize_book(df):
     try:
         # Request chat completion from OpenAI
         response = openai.ChatCompletion.create(
-            model="gpt-4",
+            model="gpt-3.5-turbo",
             messages=messages,
             max_tokens=2048,
             temperature=1.0  
