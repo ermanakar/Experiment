@@ -79,7 +79,7 @@ function BookSummary() {
         type="text" 
         value={authorName} 
         onChange={e => setAuthorName(e.target.value)}
-        placeholder="Enter author's name"
+        placeholder="Search the name of the book or author"
       />
       
       <button onClick={getBooks}>Get Books</button>

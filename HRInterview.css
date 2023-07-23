@@ -42,7 +42,6 @@ input[type='text'] {
     width: 100%;
     box-sizing: border-box;
     color: #0C2577;
-    font-style: italic;
 }
 
 .SubmitButton, .StartOverButton {

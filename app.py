@@ -85,7 +85,7 @@ def select_and_summarize_book(df):
             model="gpt-3.5-turbo",
             messages=messages,
             max_tokens=2048,
-            temperature=1.0  
+            temperature=0.7  
         )
         return response['choices'][0]['message']['content'].strip()
     except Exception as e:
@@ -140,10 +140,10 @@ def generate_prd():
         ]
 
         response = openai.ChatCompletion.create(
-            model="gpt-3.5-turbo",
+            model="gpt-4",
             messages=messages,
-            max_tokens=1500,
-            temperature=1.0,
+            max_tokens=3000,
+            temperature=0.8,
         )
         prd = response.choices[0].message['content'].strip()
     except Exception as e:
@@ -182,40 +182,6 @@ def generate_questions():
             temperature=0.9,
         )
         questions = response.choices[0].text.strip()
-    except Exception as e:
-        logging.error("Exception occurred", exc_info=True)
-        abort(500, description=str(e))
-
-    return jsonify({"questions": questions})
-
-@app.route('/generate-podcast-questions', methods=['POST'])
-def generate_podcast_questions():
-    try:
-        data = request.get_json()
-
-        if not data:
-            abort(400, description="No data provided")
-
-        guest_name = data.get('guest_name')
-        guest_background = data.get('guest_background')
-        podcast_topic = data.get('podcast_topic')
-
-        if not all([guest_name, guest_background, podcast_topic]):
-            abort(400, description="Missing required data")
-
-        messages = [
-            {"role": "system", "content": f"You are a podcast host who is preparing to interview {guest_name}, who is {guest_background}."},
-            {"role": "user", "content": f"The topic of the podcast is: {podcast_topic}"},
-            {"role": "user", "content": "Can you help me generate some potential questions to ask during the interview?"},
-        ]
-
-        response = openai.ChatCompletion.create(
-            model="gpt-3.5-turbo",
-            messages=messages,
-            max_tokens=100,
-            temperature=0.9,
-        )
-        questions = response.choices[0].message['content'].strip()
     except Exception as e:
         logging.error("Exception occurred", exc_info=True)
         abort(500, description=str(e))

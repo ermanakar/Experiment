@@ -26,11 +26,11 @@ function Home() {
             <p>Get a detailed summary of your favorite books</p>
           </Link>
           
-          <Link to="/live-podcast" className="feature">
+          <a href="https://api.shopofluba.de/gptproject" className="feature" target="_blank" rel="noopener noreferrer">
             <i className="fas fa-microphone"></i>
-            <h3>What would Lex ask?</h3>
-            <p>See what kind of podcast questions AI can come up with</p>
-          </Link>
+            <h3>Chat with a Resume</h3>
+            <p>Don't want to read complicated CV's? Talk to it and ask questions!</p>
+          </a>
 
           <Link to="/prd-creator" className="feature">
             <i className="fas fa-briefcase"></i>
